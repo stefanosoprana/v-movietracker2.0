@@ -21,7 +21,7 @@ export default {
     })
   },
   getMovie(id) {
-    return apiClient.get('/movie/' + id + '/', {
+    return apiClient.get('/movie/' + id , {
       params: {
         api_key: "34da49db03cff40a92cb2b8f356c68fe",
         language: "it",

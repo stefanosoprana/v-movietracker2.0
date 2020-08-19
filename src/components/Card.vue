@@ -1,19 +1,20 @@
 <template>
   <div>
-    <b-card
-      :title="movie.title"
-      :img-src="movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : '#'"
-      img-alt="Image"
-      img-top
-      tag="div"
-      class="custom-margin mt-4 cardHover"
-      v-on:click="fetchMovie"
-    >
-      <b-card-text>
-        {{ overviewMin }}
-      </b-card-text>
+    <router-link :to="{ name: 'MovieID', params: { movieid: movie.id} }">
+      <b-card
+        :title="movie.title"
+        :img-src="movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : '#'"
+        img-alt="Image"
+        img-top
+        tag="div"
+        class="custom-margin mt-4 cardHover"
+      >
+        <b-card-text>
+          {{ overviewMin }}
+        </b-card-text>
 
-    </b-card>
+      </b-card>
+    </router-link>
   </div>
 
 </template>
@@ -26,12 +27,6 @@ export default {
   data(){
     return {
       overviewMin: ""
-    }
-  },
-  methods: {
-    fetchMovie(){
-      // this.$store.dispatch('FetchMovie', this.movie.id)
-      console.log(this.movie.id);
     }
   },
   created(){
@@ -48,9 +43,5 @@ export default {
 <style>
   .custom-margin {
     height: calc(100% - 1.5rem);
-  }
-
-  .cardHover {
-
   }
 </style>
