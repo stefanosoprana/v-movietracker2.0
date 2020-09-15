@@ -7,17 +7,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     movies: [],
-    movie: []
+    moviesTrack: []
   },
   mutations: {
     ADD_MOVIES(state, movies){
       state.movies = movies
     },
     ADD_MOVIE(state, movie){
-      state.movie = movie
-    },
-    CLEAR(state){
-      state.movie = []
+      state.moviesTrack.push(movie)
     }
   },
   actions: {
@@ -30,23 +27,8 @@ export default new Vuex.Store({
           return console.log("there was a problem: " + error);
         })
     },
-    FetchMovie({commit, state}, id){
-      if (!(state.movie.id == id)) {
-        state.movie == []
-        return MovieService.getMovie(id)
-        .then(response => {
-          commit('ADD_MOVIE', response.data)
-        })
-        .catch(error => {
-          return console.log("there was a problem: " + error);
-        })
-      }
-      else {
-        console.log('è uguale');
-      }
-    },
-    clear({commit}){
-      commit('CLEAR')
+    addMovie({commit}, movie){
+      commit('ADD_MOVIE', movie)
     }
   },
   modules: {}

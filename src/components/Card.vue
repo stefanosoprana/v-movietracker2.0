@@ -33,8 +33,7 @@ export default {
     let overview = this.movie.overview
     let maxLetter = 150
     if (overview.length > maxLetter) {
-      let overviewMin = overview.substring(0, maxLetter - 3) + "..."
-      this.overviewMin = overviewMin
+      this.overviewMin = overview.substring(0, maxLetter - 3) + "..."
     }
   }
 }

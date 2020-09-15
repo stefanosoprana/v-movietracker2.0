@@ -2,6 +2,8 @@
   <b-container>
     <div class="text-left">
       <h1 class="text-center">{{ movie.title }}</h1>
+      <button type="button" name="button" class="btn btn-primary mb-4" @click="addMovie">Visto</button>
+      <!-- <button class="mb-4" type="button" name="button" @click="addMovie">{{ this.addButton ? 'visto' : 'da vedere' }}</button> -->
       <b-img v-bind:src="'https://image.tmdb.org/t/p/original/' + movie.backdrop_path" fluid alt="Responsive image"></b-img>
       <h3 class="mt-5">Genres</h3>
       <ul>
@@ -23,20 +25,49 @@
 </template>
 
 <script>
+import MovieService from '@/services/MovieService.js'
 import { mapState } from 'vuex'
 
 export default {
-  props: {
-    movieid: Number
+  props: ['movieid'],
+  data: function() {
+    return {
+      // addButton: true,
+      movie: {}
+    }
   },
-  created(){
-    this.$store.dispatch('clear')
-  },
-  mounted(){
-    this.$store.dispatch('FetchMovie', this.movieid)
+  methods: {
+    // add movie to moviesTrack
+    addMovie(){
+      // create an object to send to store
+      let movie = {
+        id: this.movie.id,
+        title: this.movie.title,
+        image: this.movie.poster_path,
+        runtime: this.movie.runtime
+      }
+      // check if the item exist in the store
+      let checkItem = this.moviesTrack.filter(x => x.id === movie.id)
+      if (checkItem.length > 0) {
+        alert('già visto')
+      } else {
+        // if not send to store
+        this.$store.dispatch('addMovie', movie)
+      }
+    }
   },
   computed: {
-    ...mapState(['movie'])
+    ...mapState(['moviesTrack'])
+  },
+  created(){
+    console.log(this.moviesTrack.map(x => console.log(x)));
+    return MovieService.getMovie(this.movieid)
+    .then(response => {
+      this.movie = response.data
+    })
+    .catch(error => {
+      return console.log("there was a problem: " + error);
+    })
   }
 }
 </script>
