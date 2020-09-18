@@ -14,7 +14,7 @@ export default new Vuex.Store({
       state.movies = movies
     },
     ADD_MOVIE(state, movie){
-      state.moviesTrack.push(movie)
+      state.moviesTrack.unshift(movie)
     }
   },
   actions: {

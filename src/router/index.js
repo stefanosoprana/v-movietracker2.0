@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Movie from "../views/Movie.vue";
 import MovieID from "../views/MovieID.vue";
+import Tracker from "../views/Tracker.vue";
 
 Vue.use(VueRouter);
 
@@ -31,6 +32,11 @@ const routes = [
     name: "MovieID",
     component: MovieID,
     props: true
+  },
+  {
+    path: "/tracker",
+    name: "Tracker",
+    component: Tracker,
   }
 ];
 
