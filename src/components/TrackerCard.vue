@@ -4,8 +4,13 @@
       <img class="box-left__image" :src="movieTrack.image ? `https://image.tmdb.org/t/p/w200${movieTrack.image}` : '#'">
     </div>
     <div class="box-right">
-      <h3>{{movieTrack.title}}</h3>
-      <h4>{{`${movieTrack.runtime} min`}}</h4>
+      <div class="box-right__text">
+        <h3>{{movieTrack.title}}</h3>
+        <h4>{{`${movieTrack.runtime} min`}}</h4>
+      </div>
+      <div class="box-right__button">
+        <button class="btn btn-danger" type="button" name="button" @click="remove">Remove</button>
+      </div>
     </div>
   </div>
 </template>
@@ -14,7 +19,12 @@
 export default {
   props: {
     movieTrack: Object,
-  }
+  },
+  methods: {
+    remove(){
+      this.$store.dispatch('removeMovie', this.movieTrack.id)
+    }
+  },
 }
 </script>
 
@@ -32,11 +42,17 @@ export default {
     }
   }
   &-right {
-    padding: 20px;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
+    &__text {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
   }
 }
 </style>

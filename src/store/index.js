@@ -15,6 +15,9 @@ export default new Vuex.Store({
     },
     ADD_MOVIE(state, movie){
       state.moviesTrack.unshift(movie)
+    },
+    REMOVE_MOVIE(state, itemRemoved){
+      state.moviesTrack = itemRemoved
     }
   },
   actions: {
@@ -29,6 +32,10 @@ export default new Vuex.Store({
     },
     addMovie({commit}, movie){
       commit('ADD_MOVIE', movie)
+    },
+    removeMovie({commit, state}, movieId){
+      let itemRemoved = state.moviesTrack.filter(x => x.id !== movieId)
+      commit('REMOVE_MOVIE', itemRemoved)
     }
   },
   modules: {}
