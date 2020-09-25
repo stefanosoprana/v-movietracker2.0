@@ -4,7 +4,7 @@
       <img class="box-left__image" :src="movieTrack.image ? `https://image.tmdb.org/t/p/w200${movieTrack.image}` : '#'">
     </div>
     <div class="box-right">
-      <div class="box-right__text">
+      <div class="box-right__text text-left">
         <h3>{{movieTrack.title}}</h3>
         <h4>{{`${movieTrack.runtime} min`}}</h4>
       </div>

@@ -1,4 +1,5 @@
 import axios from 'axios'
+console.log();
 
 const apiClient = axios.create({
   baseURL: `https://api.themoviedb.org/3`,
@@ -14,7 +15,7 @@ export default {
   getMovies(movie) {
     return apiClient.get('/search/movie', {
       params: {
-        api_key: "34da49db03cff40a92cb2b8f356c68fe",
+        api_key: process.env.VUE_APP_KEY_TMDB,
         language: "it",
         query: movie
       }
@@ -23,7 +24,7 @@ export default {
   getMovie(id) {
     return apiClient.get('/movie/' + id , {
       params: {
-        api_key: "34da49db03cff40a92cb2b8f356c68fe",
+        api_key: process.env.VUE_APP_KEY_TMDB,
         language: "it",
       }
     })

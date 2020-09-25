@@ -1,13 +1,13 @@
 <template>
   <div>
-    <router-link :to="{ name: 'MovieID', params: { movieid: movie.id} }">
+    <router-link class="cardHover" :to="{ name: 'MovieID', params: { movieid: movie.id} }">
       <b-card
         :title="movie.title"
         :img-src="movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : '#'"
         img-alt="Image"
         img-top
         tag="div"
-        class="custom-margin mt-4 cardHover"
+        class="custom-margin mt-4"
       >
         <b-card-text>
           {{ overviewMin }}
@@ -39,8 +39,21 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
   .custom-margin {
     height: calc(100% - 1.5rem);
+  }
+
+  .cardHover {
+    color: black;
+    &:hover {
+      text-decoration: none;
+      color: black;
+    }
+    .card {
+      &:hover {
+        border: 2px solid #42b983;
+      }
+    }
   }
 </style>
